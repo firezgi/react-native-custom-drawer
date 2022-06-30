@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+//https://www.youtube.com/watch?v=l8nY4Alk70Q
+//https://github.com/luceroweb/react-native-custom-drawer  to add header
+import "react-native-gesture-handler";
+import { StyleSheet, StatusBar, SafeAreaView, Platform } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import AuthStack from "./src/navigation/AuthStack";
+import AppStack from "./src/navigation/AppStack";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <NavigationContainer>
+        <AppStack />
+        {/* <AuthStack /> */}
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    PaddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
 });
